@@ -17,6 +17,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/main_image" />
 
+    <ImageView
+        android:id="@+id/delete_cocktail"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/delete"
+        android:src="@drawable/baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/material_dynamic_tertiary80" />
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -83,10 +95,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="asd asd asd asd"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recipe_header"
-                    tools:ignore="true" />
+                    tools:ignore="true"
+                    tools:text="asd asd asd asd" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

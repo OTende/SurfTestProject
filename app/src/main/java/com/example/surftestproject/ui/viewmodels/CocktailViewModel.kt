@@ -38,5 +38,10 @@ class CocktailViewModel @Inject constructor(private val repository: CocktailRepo
     fun getCocktailsByCounter(count: Int): List<Cocktail> = runBlocking {
         repository.getCocktailsByCounter(count)
     }
+
+    fun deleteCocktail(cocktail: Cocktail) = viewModelScope.launch {
+        repository.deleteCocktail(cocktail)
+        updateCocktails()
+    }
 }
 

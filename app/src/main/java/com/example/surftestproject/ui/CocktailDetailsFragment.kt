@@ -1,13 +1,18 @@
 package com.example.surftestproject.ui
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.surftestproject.R
 import com.example.surftestproject.data.ImageDecoder
 import com.example.surftestproject.databinding.FragmentCocktailCreationBinding
@@ -54,6 +59,23 @@ class CocktailDetailsFragment : Fragment() {
 //
 //            binding.recipeContainer.addView(underscore)
 //        }
+
+        binding.deleteCocktail.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.delete))
+                .setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    viewModel.deleteCocktail(cocktail)
+                    Toast.makeText(
+                        requireContext(), R.string.successful_deleting, Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().navigate(R.id.action_cocktailDetailsFragment_to_myCocktailsFragment)
+                }
+                .setNegativeButton(R.string.no) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create().show()
+        }
 
         return binding.root
     }
