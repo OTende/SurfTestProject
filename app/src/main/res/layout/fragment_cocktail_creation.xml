@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".ui.CocktailCreationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/cocktail_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/your_cocktail_image"
+            app:cornerRadius="8dp"
+            android:src="@drawable/tiny_camera"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/material_dynamic_neutral50" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cocktail_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cocktail_name"
+            app:layout_constraintTop_toBottomOf="@id/cocktail_image">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cocktail_description"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cocktail_description"
+            app:helperText="@string/optional_field"
+            app:layout_constraintTop_toBottomOf="@id/cocktail_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ingredients_text"
+            style="@style/MaterialAlertDialog.Material3.Body.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ingredients"
+            android:textColor="@color/material_dynamic_tertiary40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cocktail_description" />
+
+        <ScrollView
+            android:id="@+id/ingredients_scroll_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ingredients_text">
+
+            <LinearLayout
+                android:id="@+id/ingredients_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_ingredient_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/plus_sign"
+            android:importantForAccessibility="no"
+            app:layout_constraintStart_toEndOf="@id/ingredients_scroll_list"
+            app:layout_constraintTop_toTopOf="@id/ingredients_scroll_list" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cocktail_recipe"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cocktail_recipe"
+            app:helperText="@string/optional_field"
+            app:layout_constraintTop_toBottomOf="@id/add_ingredient_button">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/save_cocktail_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintTop_toBottomOf="@id/cocktail_recipe" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            app:layout_constraintTop_toBottomOf="@id/save_cocktail_button" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

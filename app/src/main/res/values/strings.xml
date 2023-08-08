@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Surf Test Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_cocktails">My cocktails</string>
+    <string name="first_cocktail">Add your first\ncocktail here</string>
+    <string name="main_image_description">A girl with a cocktail</string>
+    <string name="cocktail_image_description">Your cocktail</string>
+    <string name="your_cocktail_image">Your cocktail image</string>
+    <string name="cocktail_name">Name</string>
+    <string name="cocktail_description">Description</string>
+    <string name="optional_field">Optional field</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="cocktail_recipe">Recipe</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="cocktail_image">Cocktail image</string>
+    <string name="recipe">Recipe</string>
+</resources>
