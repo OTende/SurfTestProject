@@ -26,5 +26,9 @@
         android:id="@+id/cocktailDetailsFragment"
         android:name="com.example.surftestproject.ui.CocktailDetailsFragment"
         android:label="fragment_cocktail_details"
-        tools:layout="@layout/fragment_cocktail_details" />
+        tools:layout="@layout/fragment_cocktail_details" >
+        <action
+            android:id="@+id/action_cocktailDetailsFragment_to_myCocktailsFragment"
+            app:destination="@id/myCocktailsFragment" />
+    </fragment>
 </navigation>

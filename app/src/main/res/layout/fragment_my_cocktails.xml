@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.MyCocktailsFragment">
 
+    <ImageButton
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/share"
+        android:src="@drawable/baseline_share_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/main_image"
         android:layout_width="0dp"
@@ -30,10 +39,10 @@
         app:layout_constraintTop_toBottomOf="@id/main_image" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginHorizontal="16dp"
         android:id="@+id/cocktails_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
