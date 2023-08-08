@@ -2,8 +2,6 @@ package com.example.surftestproject.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.surftestproject.data.Cocktail
-import com.example.surftestproject.data.db.CocktailDao
 import com.example.surftestproject.data.db.CocktailDatabase
 import dagger.Module
 import dagger.Provides

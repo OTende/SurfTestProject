@@ -2,6 +2,7 @@ package com.example.surftestproject.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ class IngredientCreationFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
             .setView(R.layout.fragment_ingredient_creation)
+            .setPositiveButton("asd") { _, _, ->
+                val value = binding.ingredient.editText?.text
+            }
             .create()
     }
 

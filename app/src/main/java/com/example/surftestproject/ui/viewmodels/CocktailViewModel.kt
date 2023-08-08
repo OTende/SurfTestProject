@@ -7,12 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.surftestproject.data.Cocktail
 import com.example.surftestproject.data.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.util.concurrent.Flow
 import javax.inject.Inject
 
 @HiltViewModel

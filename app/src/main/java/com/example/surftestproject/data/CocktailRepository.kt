@@ -1,7 +1,6 @@
 package com.example.surftestproject.data
 
 import com.example.surftestproject.data.db.CocktailDao
-import com.example.surftestproject.data.db.CocktailDatabase
 import javax.inject.Inject
 
 class CocktailRepository @Inject constructor(

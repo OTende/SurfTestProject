@@ -1,16 +1,20 @@
 package com.example.surftestproject.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.core.view.forEach
+import androidx.core.view.marginEnd
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -44,13 +48,10 @@ class CocktailCreationFragment : Fragment() {
 
         if (arguments != null) {
             with(requireArguments()) {
-//                binding.cocktailName.editText?.text =
-//                    Editable.Factory.getInstance().newEditable("asd")
                 binding.cocktailName.editText?.text =
                     Editable.Factory.getInstance().newEditable(getString(NAME_TAG))
                 binding.cocktailDescription.editText?.text =
                     SpannableStringBuilder(getString(DESCRIPTION_TAG))
-//                binding.ingredientsList.
                 binding.cocktailImage.setImageBitmap(ImageDecoder.toBitmap(getByteArray(IMAGE_TAG)!!))
                 binding.cocktailRecipe.editText?.text =
                     SpannableStringBuilder(getString(RECIPE_TAG))
@@ -58,22 +59,47 @@ class CocktailCreationFragment : Fragment() {
             }
         }
 
+        // Изменение так и не заработало, только добавление
         binding.saveCocktailButton.setOnClickListener {
             val cocktail = createCocktail()
             if (id == -1) {
                 viewModel.saveCocktail(cocktail)
-                Toast.makeText(requireContext(), getString(R.string.save_success), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.save_success),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                val id = viewModel.changeCocktail(cocktail)
-                val bundle = bundleOf(CocktailDetailsFragment.DETAILS_KEY to id)
-                findNavController().navigate(R.id.action_cocktailCreationFragment_to_cocktailDetailsFragment, bundle)
+                viewModel.changeCocktail(cocktail)
+                // Крашит всё
+//                val bundle = bundleOf(CocktailDetailsFragment.DETAILS_KEY to id)
+//                findNavController().navigate(
+//                    R.id.action_cocktailCreationFragment_to_cocktailDetailsFragment,
+//                    bundle
+//                )
             }
         }
 
+        binding.cancelButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // Делалось впопыхах, вариант с нормальным фрагментом был выкинут
         binding.addIngredientButton.setOnClickListener {
-            IngredientCreationFragment().show(
-                childFragmentManager, "asd"
-            )
+            val input = EditText(requireContext())
+            AlertDialog.Builder(requireContext())
+                .setView(input)
+                .setTitle(R.string.add_ingredient)
+                .setPositiveButton(R.string.add) { _, _ ->
+                    val view = TextView(requireContext()).apply {
+                        text = input.text.toString()
+                    }
+                    binding.ingredientsList.addView(view)
+                }
+                .setNegativeButton(R.string.cancel) { _, _ ->
+
+                }
+                .show()
         }
 
         return binding.root
@@ -88,8 +114,7 @@ class CocktailCreationFragment : Fragment() {
         return Cocktail(
             name = binding.cocktailName.editText?.text.toString(),
             description = binding.cocktailDescription.editText?.text.toString(),
-//            ingredients = values.toList(),
-            ingredients = listOf("1, 2, 3, 4", "1asd", "asdfg"),
+            ingredients = values.toList(),
             image = ImageDecoder.toByteArray(binding.cocktailImage),
             recipe = binding.cocktailRecipe.editText?.text.toString()
         )

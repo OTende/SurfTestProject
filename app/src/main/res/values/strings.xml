@@ -21,6 +21,7 @@
     <string name="add">Add</string>
     <string name="share">Share cocktails</string>
     <string name="share_message">Смотри какие коктейли я создал в приложении Cocktail Bar! %s и другие. Хочешь попробовать?</string>
+    <string name="short_share_message">В приложении Cocktail Bar можно создавать свои коктейли! Присоединяйся!</string>
     <string name="delete">Удалить коктейль</string>
     <string name="are_you_sure">Вы уверены?</string>
     <string name="yes">Да</string>

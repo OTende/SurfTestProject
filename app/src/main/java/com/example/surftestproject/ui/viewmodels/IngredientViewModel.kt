@@ -1,9 +1,5 @@
 package com.example.surftestproject.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-
 //class IngredientViewModel : ViewModel() {
 //    private var _list: MutableLiveData<List<String>>? = null
 //    val list: LiveData<List<String>> = _list!!
