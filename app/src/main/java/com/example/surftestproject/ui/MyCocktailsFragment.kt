@@ -42,29 +42,30 @@ class MyCocktailsFragment : Fragment() {
         binding.cocktailsList.adapter = adapter
 
         viewModel.cocktailList.observe(viewLifecycleOwner) {
-            if (it.isEmpty())
+            if (it.isEmpty()) {
                 binding.firstCocktailHint.visibility = View.VISIBLE
+            } else {
+                ViewCompat.animate(binding.mainImage)
+                    .translationYBy(-3000F)
+                    .setDuration(500)
+                    .start()
 
-            ViewCompat.animate(binding.mainImage)
-                .translationYBy(-3000F)
-                .setDuration(500)
-                .start()
+                ViewCompat.animate(binding.myCocktailsTv)
+                    .translationYBy(-500F)
+                    .setDuration(500)
+                    .start()
 
-            ViewCompat.animate(binding.myCocktailsTv)
-                .translationYBy(-500F)
-                .setDuration(500)
-                .start()
+                ViewCompat.animate(binding.firstCocktailHint)
+                    .translationY(5000F)
+                    .setDuration(500)
+                    .start()
 
-            ViewCompat.animate(binding.firstCocktailHint)
-                .translationY(5000F)
-                .setDuration(500)
-                .start()
+                ViewCompat.animate(binding.cocktailsList)
+                    .translationYBy(-500F)
+                    .setDuration(700)
+                    .start()
 
-            ViewCompat.animate(binding.cocktailsList)
-                .translationYBy(-500F)
-                .setDuration(700)
-                .start()
-
+            }
             adapter.submitList(it)
         }
 
