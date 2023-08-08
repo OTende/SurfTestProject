@@ -16,4 +16,9 @@
     <string name="cancel">Cancel</string>
     <string name="cocktail_image">Cocktail image</string>
     <string name="recipe">Recipe</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="add">Add</string>
+    <string name="share">Share cocktails</string>
+    <string name="share_message">Смотри какие коктейли я создал в приложении Cocktail Bar! %s и другие. Хочешь попробовать?</string>
 </resources>

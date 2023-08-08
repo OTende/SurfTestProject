@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Flow
 import javax.inject.Inject
-
 @HiltViewModel
 class CocktailViewModel @Inject constructor(private val repository: CocktailRepository) : ViewModel() {
     private var _cocktailList = MutableLiveData<List<Cocktail>>()
@@ -35,4 +34,9 @@ class CocktailViewModel @Inject constructor(private val repository: CocktailRepo
     fun getCocktailById(id: Int): Cocktail = runBlocking {
         repository.getCocktail(id)
     }
+
+    fun getCocktailsByCounter(count: Int): List<Cocktail> = runBlocking {
+        repository.getCocktailsByCounter(count)
+    }
 }
+

@@ -15,4 +15,7 @@ interface CocktailDao {
 
     @Query("SELECT * FROM Cocktail WHERE id = :id")
     suspend fun getCocktailById(id: Int): Cocktail
+
+    @Query("SELECT * FROM Cocktail ORDER BY id DESC LIMIT :count")
+    suspend fun getCocktailsByCounter(count: Int): List<Cocktail>
 }

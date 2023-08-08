@@ -1,6 +1,7 @@
 package com.example.surftestproject.ui
 
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -52,6 +53,20 @@ class MyCocktailsFragment : Fragment() {
 
         binding.addCocktailBtn.setOnClickListener {
             findNavController().navigate(R.id.action_myCocktailsFragment_to_cocktailCreationFragment)
+        }
+
+        binding.shareButton.setOnClickListener {
+            val cocktailNames = viewModel.getCocktailsByCounter(4).joinToString(separator = ", ") { it.name }
+            val finalText = getString(R.string.share_message, cocktailNames)
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, finalText)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
         return binding.root
     }
