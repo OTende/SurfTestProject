@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.core.view.forEach
-import androidx.core.view.marginEnd
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,6 +21,7 @@ import com.example.surftestproject.data.Cocktail
 import com.example.surftestproject.data.ImageDecoder
 import com.example.surftestproject.databinding.FragmentCocktailCreationBinding
 import com.example.surftestproject.ui.viewmodels.CocktailViewModel
+import com.google.android.material.textfield.TextInputLayout
 
 class CocktailCreationFragment : Fragment() {
     private var _binding: FragmentCocktailCreationBinding? = null
@@ -61,22 +60,26 @@ class CocktailCreationFragment : Fragment() {
 
         // Изменение так и не заработало, только добавление
         binding.saveCocktailButton.setOnClickListener {
-            val cocktail = createCocktail()
-            if (id == -1) {
-                viewModel.saveCocktail(cocktail)
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.save_success),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                viewModel.changeCocktail(cocktail)
-                // Крашит всё
+            if (binding.cocktailName.verifyDataNotEmpty("Add title")
+                && binding.cocktailRecipe.verifyDataNotEmpty("Add recipe")
+            ) {
+                val cocktail = createCocktail()
+                if (id == -1) {
+                    viewModel.saveCocktail(cocktail)
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.save_success),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    viewModel.changeCocktail(cocktail)
+                    // Крашит всё
 //                val bundle = bundleOf(CocktailDetailsFragment.DETAILS_KEY to id)
 //                findNavController().navigate(
 //                    R.id.action_cocktailCreationFragment_to_cocktailDetailsFragment,
 //                    bundle
 //                )
+                }
             }
         }
 
@@ -105,12 +108,20 @@ class CocktailCreationFragment : Fragment() {
         return binding.root
     }
 
+    private fun TextInputLayout.verifyDataNotEmpty(errorMessage: String): Boolean {
+        if (this.editText?.text?.isEmpty() == true) {
+            this.editText?.error = errorMessage
+            return false
+        }
+        this.editText?.error = null
+        return true
+    }
+
     private fun createCocktail(): Cocktail {
         val values = mutableListOf<String>()
         binding.ingredientsList.forEach {
             values.add((it as TextView).text.toString())
         }
-
         return Cocktail(
             name = binding.cocktailName.editText?.text.toString(),
             description = binding.cocktailDescription.editText?.text.toString(),
@@ -118,6 +129,7 @@ class CocktailCreationFragment : Fragment() {
             image = ImageDecoder.toByteArray(binding.cocktailImage),
             recipe = binding.cocktailRecipe.editText?.text.toString()
         )
+
     }
 
     override fun onDestroy() {

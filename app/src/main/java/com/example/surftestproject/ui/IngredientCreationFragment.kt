@@ -2,7 +2,6 @@ package com.example.surftestproject.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.example.surftestproject.R
 import com.example.surftestproject.databinding.FragmentIngredientCreationBinding
 
 class IngredientCreationFragment : DialogFragment() {
-//    private val ingredientViewModel: IngredientViewModel by activityViewModels()
     private var _binding: FragmentIngredientCreationBinding? = null
     private val binding get() = _binding!!
 
@@ -31,7 +29,6 @@ class IngredientCreationFragment : DialogFragment() {
     ): View {
         _binding = FragmentIngredientCreationBinding.inflate(inflater, container, false)
         binding.addIngredientButton.setOnClickListener {
-//            ingredientViewModel.addIngredient(binding.ingredient.editText!!.text.toString())
         }
         return binding.root
     }
