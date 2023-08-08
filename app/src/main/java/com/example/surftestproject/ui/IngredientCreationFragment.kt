@@ -1,32 +1,39 @@
 package com.example.surftestproject.ui
 
-import android.content.Context
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.example.surftestproject.R
+import com.example.surftestproject.databinding.FragmentIngredientCreationBinding
 
 class IngredientCreationFragment : DialogFragment() {
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            // Verify that the host Fragment implements the callback interface
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement OnStringSelectedListener")
-        }
+//    private val ingredientViewModel: IngredientViewModel by activityViewModels()
+    private var _binding: FragmentIngredientCreationBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(requireContext())
+            .setView(R.layout.fragment_ingredient_creation)
+            .create()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_ingredient_creation, container, false)
-        view.findViewById<Button>(R.id.button123).setOnClickListener {
-//            listener?.onStringSelected("asdfghhj")
+    ): View {
+        _binding = FragmentIngredientCreationBinding.inflate(inflater, container, false)
+        binding.addIngredientButton.setOnClickListener {
+//            ingredientViewModel.addIngredient(binding.ingredient.editText!!.text.toString())
         }
-        return view
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

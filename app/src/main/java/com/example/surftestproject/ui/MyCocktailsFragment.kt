@@ -1,5 +1,7 @@
 package com.example.surftestproject.ui
 
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.opengl.Visibility
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewPropertyAnimator
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController

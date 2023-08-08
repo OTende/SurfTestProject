@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -29,8 +30,8 @@ class CocktailDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCocktailDetailsBinding.inflate(inflater, container, false)
-        val id = arguments?.getInt(DETAILS_KEY)
-        val cocktail = viewModel.getCocktailById(id ?: 0)
+        val id = requireArguments().getInt(DETAILS_KEY)
+        val cocktail = viewModel.getCocktailById(id)
 
         if (cocktail.image != null) {
             binding.cocktailImage.setImageBitmap(ImageDecoder.toBitmap(cocktail.image))
@@ -40,25 +41,11 @@ class CocktailDetailsFragment : Fragment() {
             )
         }
 
-        binding.ingredients.text = cocktail.ingredients.joinToString(separator = "\n_\n")
+        binding.ingredients.text = cocktail.ingredients.joinToString(separator = "\n_\n\n")
 
         binding.name.text = cocktail.name
         binding.recipe.text = cocktail.recipe
         binding.description.text = cocktail.description
-//        cocktail.ingredients.forEach {
-//            val view = TextView(requireContext()).apply {
-//                setTextAppearance(R.style.Base_Theme_AppCompat_DefaultText)
-//                text = it
-//            }
-////            binding.recipeContainer.addView(view)
-//
-//            val underscore = TextView(requireContext()).apply {
-//                text = "_"
-//                setTextAppearance(R.style.Base_Theme_AppCompat_DefaultText)
-//            }
-//
-//            binding.recipeContainer.addView(underscore)
-//        }
 
         binding.deleteCocktail.setOnClickListener {
             AlertDialog.Builder(requireContext())
@@ -75,6 +62,11 @@ class CocktailDetailsFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .create().show()
+        }
+
+        binding.updateCocktail.setOnClickListener {
+            val bundle = CocktailCreationFragment.getBundleForUpdate(cocktail)
+            findNavController().navigate(R.id.action_cocktailDetailsFragment_to_cocktailCreationFragment, bundle)
         }
 
         return binding.root

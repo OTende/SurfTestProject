@@ -14,8 +14,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Flow
 import javax.inject.Inject
+
 @HiltViewModel
-class CocktailViewModel @Inject constructor(private val repository: CocktailRepository) : ViewModel() {
+class CocktailViewModel @Inject constructor(private val repository: CocktailRepository) :
+    ViewModel() {
     private var _cocktailList = MutableLiveData<List<Cocktail>>()
     val cocktailList: LiveData<List<Cocktail>> = _cocktailList
 
@@ -42,6 +44,14 @@ class CocktailViewModel @Inject constructor(private val repository: CocktailRepo
     fun deleteCocktail(cocktail: Cocktail) = viewModelScope.launch {
         repository.deleteCocktail(cocktail)
         updateCocktails()
+    }
+
+    fun changeCocktail(cocktail: Cocktail): Int {
+        return runBlocking {
+            val updating = async { repository.changeCocktail(cocktail) }
+            updateCocktails()
+            updating.await()
+        }
     }
 }
 

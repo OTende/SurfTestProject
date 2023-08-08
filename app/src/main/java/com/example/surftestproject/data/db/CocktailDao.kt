@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.surftestproject.data.Cocktail
 
 @Dao
@@ -22,4 +23,6 @@ interface CocktailDao {
 
     @Delete
     suspend fun deleteCocktail(cocktail: Cocktail)
+    @Update
+    suspend fun changeCocktail(cocktail: Cocktail): Int
 }

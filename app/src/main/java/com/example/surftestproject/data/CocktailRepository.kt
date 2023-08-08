@@ -12,4 +12,5 @@ class CocktailRepository @Inject constructor(
     suspend fun getCocktail(id: Int): Cocktail = dao.getCocktailById(id)
     suspend fun getCocktailsByCounter(count: Int) = dao.getCocktailsByCounter(count)
     suspend fun deleteCocktail(cocktail: Cocktail) = dao.deleteCocktail(cocktail)
+    suspend fun changeCocktail(cocktail: Cocktail): Int = dao.changeCocktail(cocktail)
 }

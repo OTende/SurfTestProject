@@ -26,4 +26,5 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="successful_deleting">Удаление успешно</string>
+    <string name="save_success">Успешное сохранение</string>
 </resources>

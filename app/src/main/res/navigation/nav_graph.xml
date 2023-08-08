@@ -21,7 +21,11 @@
         android:id="@+id/cocktailCreationFragment"
         android:name="com.example.surftestproject.ui.CocktailCreationFragment"
         android:label="fragment_cocktail_creation"
-        tools:layout="@layout/fragment_cocktail_creation" />
+        tools:layout="@layout/fragment_cocktail_creation" >
+        <action
+            android:id="@+id/action_cocktailCreationFragment_to_cocktailDetailsFragment"
+            app:destination="@id/cocktailDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cocktailDetailsFragment"
         android:name="com.example.surftestproject.ui.CocktailDetailsFragment"
@@ -30,5 +34,8 @@
         <action
             android:id="@+id/action_cocktailDetailsFragment_to_myCocktailsFragment"
             app:destination="@id/myCocktailsFragment" />
+        <action
+            android:id="@+id/action_cocktailDetailsFragment_to_cocktailCreationFragment"
+            app:destination="@id/cocktailCreationFragment" />
     </fragment>
 </navigation>
